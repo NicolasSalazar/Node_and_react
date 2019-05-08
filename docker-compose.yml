@@ -1,0 +1,25 @@
+version: "2"
+services:
+    client:
+        image: node
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./client:/client
+            - /client/node_modules
+        links:
+            - api
+        networks:
+            webappnetwork
+    api:
+        image: node
+        ports:
+            - "9000:9000"
+        volumes:
+            - ./api:/api
+            - /api/node_modules
+        networks:
+            webappnetwork
+networks:
+    webappnetwork:
+        driver: bridge
